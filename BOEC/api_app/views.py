@@ -5,7 +5,6 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from api_app import models
 
-@method_decorator(csrf_exempt, name='dispatch')
 class Product(View):
     def post(self, request):
         data = json.loads(request.body.decode("utf-8"))
@@ -47,7 +46,6 @@ class Product(View):
         }
         return JsonResponse(data)
 
-@method_decorator(csrf_exempt, name='dispatch')
 class ProductUpdate(View):
     def patch(self, request, item_id):
         data = json.loads(request.body.decode("utf-8"))
