@@ -12,12 +12,14 @@ class Product(View):
         p_des = data.get('description')
         p_price = data.get('price')
         p_category = data.get('category')
+        p_image = data.get('image')
 
         product_data = {
             'title' : p_title,
             'description' : p_des,
             'price' : p_price,
-            'category' : p_category
+            'category' : p_category,
+            'image' : p_image
         }
 
         product = models.Product.objects.create(**product_data)
@@ -36,7 +38,8 @@ class Product(View):
                 'title': item.title,
                 'description': item.description,
                 'price': item.price,
-                'category' : item.category
+                'category' : item.category,
+                'image': item.image
             })
         return JsonResponse(items_data,safe=False)  #Trả về json array -> ko có key -> set safe=false
 
@@ -59,7 +62,8 @@ class ProductItem(View):
             'title' : item.title,
             'description' : item.description,
             'price' : item.price,
-            'category' : item.category
+            'category' : item.category,
+            'image' : item.image
         }
         return JsonResponse(product_data)
 
@@ -74,7 +78,8 @@ class ProductCategory(View):
                 'title': item.title,
                 'description': item.description,
                 'price': item.price,
-                'category' : item.category
+                'category' : item.category,
+                'image': item.image
             })
         return JsonResponse(items_data,safe=False)  #Trả về json array -> ko có key -> set safe=false
 
